@@ -1,9 +1,27 @@
-import fastify from "fastify";
-import { appRoutes } from "./http/routes";
+import fastify from 'fastify'
+import { ZodError } from 'zod'
+import { env } from './env'
+import { appRoutes } from './http/routes'
 
-export const app = fastify();
+export const app = fastify()
 
-app.register(appRoutes);
+app.register(appRoutes)
+
+app.setErrorHandler((error, _, reply) => {
+  if (error instanceof ZodError) {
+    return reply
+      .status(400)
+      .send({ message: 'Validation error.: ', issue: error.format() })
+  }
+
+  if (env.NODE_ENV !== 'prod') {
+    console.error(error)
+  } else {
+    // TODO: log error on external tools (datadog, sentry, etc)
+  }
+
+  return reply.status(500).send({ message: 'Internal server error.' })
+})
 
 // app.get('/users/:id', async (request, reply) => {
 //   const id = request.params.id
@@ -16,7 +34,6 @@ app.register(appRoutes);
 
 //   return reply.send(users);
 // })
-
 
 // app.put('/users/:id', async (request, reply) => {
 //   const id = request.params.id
