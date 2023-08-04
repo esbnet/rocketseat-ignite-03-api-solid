@@ -41,3 +41,10 @@ Node
 Typescript
 tsx
 tsup
+
+vitest
+
+## Patterns and Designs
+
+Dependecy Inection
+Repository
