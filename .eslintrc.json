@@ -3,11 +3,12 @@
         "es2021": true,
         "node": true
     },
-    "extends": "standard-with-typescript",
+    "extends": "@rocketseat/eslint-config/node",
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "rules": {
-    }
-}
+        "camelcase": "off",
+        "no-useless-constructor": "off"
+      }}
