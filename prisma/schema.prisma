@@ -10,12 +10,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  id         String   @id @default(uuid())
-  name       String
-  email      String
-  password   String
-  created_at DateTime @default(now())
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String
+  password_hash String
+  created_at    DateTime @default(now())
+
+  checkIns CheckIn[]
 
   @@map("users")
+}
+
+model CheckIn {
+  id           String    @id @default(uuid())
+  created_at   DateTime  @default(now())
+  validated_at DateTime?
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  gyn    Gym    @relation(fields: [gym_id], references: [id])
+  gym_id String
+
+  @@map("checkins")
+}
+
+model Gym {
+  id          String @id @default(uuid())
+  title       String
+  description String
+  phone       String
+  latitude    Float
+  longitude   Float
+
+  checkIns CheckIn[]
+
+  @@map("gyms")
 }
