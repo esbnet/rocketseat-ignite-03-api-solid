@@ -14,7 +14,7 @@ interface RegisterUserResponse {
 }
 
 export class RegisterUseCase {
-  constructor(private usesRepository: UsersRepository) {}
+  constructor(private usersRepository: UsersRepository) {}
 
   async execute({
     name,
@@ -23,13 +23,13 @@ export class RegisterUseCase {
   }: RegisterProps): Promise<RegisterUserResponse> {
     const password_hash = await hash(password, 6)
 
-    const userWithSameEmail = await this.usesRepository.findByEmail(email)
+    const userWithSameEmail = await this.usersRepository.findByEmail(email)
 
     if (userWithSameEmail) {
       throw new UserAlreadyExistsError()
     }
 
-    const user = await this.usesRepository.create({
+    const user = await this.usersRepository.create({
       name,
       email,
       password_hash,
