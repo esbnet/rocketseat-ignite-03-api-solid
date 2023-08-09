@@ -6,14 +6,14 @@ GymPass style app.
 
 - [x] Deve ser possível se cadastrar;
 - [x] Deve ser possível se autenticar;
-- [ ] Deve ser possível obter o perfil de um usuário logado;
+- [x] Deve ser possível obter o perfil de um usuário logado;
 - [ ] Deve ser possível obter o número de check-ins realizados pelo usuário logado;
-- [ ] Deve ser possível o usuário obter seu histórico de check-ins;
+- [x] Deve ser possível o usuário obter seu histórico de check-ins;
 - [ ] Deve ser possível o usuário buscar academias próximas;
 - [ ] Deve ser possível o usuário buscar academias pelo nome;
 - [x] Deve ser possível o usuário realizar o check-in em uma academia;
 - [ ] Deve ser possível validar o check-in de um usuário;
-- [ ] Deve ser possível cadastrar uma academia;
+- [x] Deve ser possível cadastrar uma academia;
 
 ## RNs (Regra de Negócio) - defini como as funcionalidades devem reagir - sempre estão ligadas a um RF
 - [x] O usuário não deve poder se cadastrar com um e-mail duplicado;
@@ -32,17 +32,15 @@ GymPass style app.
 ## Resource
 
 ## Techs
-Node
-Typescript
-tsx
-tsup
+- Node
+- Typescript
+- tsx
+- tsup
 
-vitest
+- vitest
 
 ## Designs Patterns and Methodology
-Dependecy Inection
-Repository
-Factory
-
-Test
-TDD
+- Dependecy Inection
+- Repository
+- Factory
+- TDD
