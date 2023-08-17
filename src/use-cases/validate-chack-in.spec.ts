@@ -1,9 +1,9 @@
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-error'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { ValidateCheckInUseCase } from './validate-chack-in'
-let checkInsRepository: InMemoryCheckInsRepository
+import { ValidateCheckInUseCase } from './validate-check-in'
 
+let checkInsRepository: InMemoryCheckInsRepository
 let sut: ValidateCheckInUseCase
 
 describe('Validate Check-in Use Case', () => {
