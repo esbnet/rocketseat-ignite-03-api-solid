@@ -3,24 +3,37 @@
   "version": "1.0.0",
   "description": "GymPass style app.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
-    "build": "tsup src --out-dir build",
     "start": "node build/server.js",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    
+    "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
+    "test:install-prisma-environment": "npm link vitest-environment-prisma",
+
+    "build": "tsup src --out-dir build",
+    "test": "vitest run --dir src/use-cases",
+    "test:watch": "vitest --dir src/use-cases",
+    
+    "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
+    
+    "test:e2e": "vitest run --dir src/http",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint --fix --ext .js,.jsx ."
+    "test:ui": "vitest --ui"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/jwt": "7.2.0",
     "@prisma/client": "5.1.1",
     "bcryptjs": "2.4.3",
     "dayjs": "1.11.9",
     "dotenv": "16.3.1",
     "fastify": "4.21.0",
+    "npm-run-all": "4.1.5",
+    "vite-tsconfig-paths": "4.2.0",
+    "vitest": "0.33.0",
     "zod": "3.21.4"
   },
   "devDependencies": {
@@ -37,8 +50,6 @@
     "prisma": "5.1.1",
     "tsup": "7.2.0",
     "tsx": "3.12.7",
-    "typescript": "5.1.6",
-    "vite-tsconfig-paths": "4.2.0",
-    "vitest": "0.34.1"
+    "typescript": "5.1.6"
   }
 }
