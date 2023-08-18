@@ -1,5 +1,6 @@
 import 'dotenv/config'
 
+import { prisma } from '@/lib/prisma'
 import { randomUUID } from 'crypto'
 import { execSync } from 'node:child_process'
 import { Environment } from 'vitest'
@@ -32,10 +33,10 @@ export default <Environment>{
 
     return {
       async teardown() {
-        // await prisma.$executeRawUnsafe(
-        //   `DROP SCHEMA IF EXISTS "${schema}" CASCADE`,
-        // )
-        // await prisma.$disconnect()
+        await prisma.$executeRawUnsafe(
+          `DROP SCHEMA IF EXISTS "${schema}" CASCADE`,
+        )
+        await prisma.$disconnect()
       },
     }
   },
