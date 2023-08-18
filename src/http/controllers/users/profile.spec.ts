@@ -26,14 +26,14 @@ describe('Profiel (e2e)', () => {
     const { token } = authResonse.body
 
     const profileResponse = await request(app.server)
-      .get('/profile')
+      .get('/me')
       .set('Authorization', `Bearer ${token}`)
       .send()
 
     expect(profileResponse.statusCode).toEqual(200)
     expect(profileResponse.body.user).toEqual(
       expect.objectContaining({
-        name: 'esbnet@hotmail.com',
+        email: 'esbnet@hotmail.com',
       }),
     )
   })
