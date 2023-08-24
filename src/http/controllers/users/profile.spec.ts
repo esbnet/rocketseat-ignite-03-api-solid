@@ -13,7 +13,7 @@ describe('Profiel (e2e)', () => {
   })
 
   it('should be able to get user profile', async () => {
-    const { token } = await createAndAuthenticateUser(app)
+    const { token } = await createAndAuthenticateUser(app, true)
 
     const profileResponse = await request(app.server)
       .get('/me')
@@ -23,7 +23,7 @@ describe('Profiel (e2e)', () => {
     expect(profileResponse.statusCode).toEqual(200)
     expect(profileResponse.body.user).toEqual(
       expect.objectContaining({
-        email: 'esbnet@hotmail.com',
+        email: 'admin_user@hotmail.com',
       }),
     )
   })
