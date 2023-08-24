@@ -13,9 +13,9 @@ jobs:
         ports:
           - "5432:5432"
         env:
-          - POSTGRESQL_USERNAME=docker
-          - POSTGRESQL_PASSWORD=docker
-          - POSTGRESQL_DATABASE=apisolid
+          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_PASSWORD: docker
+          POSTGRESQL_DATABASE: apisolid
 
     steps:
       - uses: actions/checkout@v3
@@ -30,8 +30,8 @@ jobs:
       - run: npm run test:e2e
 
         env:
-          NODE_ENV=test # dev | prod | test
-          DATABASE_URL="postgresql://docker:docker@localhost:5432/apisolid?schema=public"
-          PORT=3333
-          JWT_SECRET=c5f0cf36-3917-419c-bc8b-3abe3b1989c4
-          JWT_EXPIRES_IN=10m
+          NODE_ENV: test # dev | prod | test
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/apisolid?schema=public"
+          PORT: 3333
+          JWT_SECRET: c5f0cf36-3917-419c-bc8b-3abe3b1989c4
+          JWT_EXPIRES_IN: 10m
